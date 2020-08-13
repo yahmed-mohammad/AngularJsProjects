@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Name Calculator</title>
+</head>
+<body ng-app="NameCalculatorApp">
+    <div ng-controller="NameCalculatorController" class="container">
+        <h3>Name Calculator in AngularJS</h3>
+        <div> Enter Text Here: 
+            <input type="text"
+               ng-model="textField"
+               ng-keyup="displayNumeric()">
+            <!--<a class="waves-effect waves-light btn" ng-click="displayNumeric()">Calculate</a>-->
+        </div>
+        <br>
+        <div>Total Numeric value of the text entered is: {{textNumeric}}</div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
