@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Custome Filter Example</title>
+</head>
+<body ng-app="CustomFilterApp">
+    <div ng-controller="CustomFilterController" class="container">
+        <h3>Custome Filter Examples in AngularJS</h3>
+        <div> Enter Text Here: (Type <b>Ahmed</b> and see the custom filter magic) 
+            <input type="text"
+               ng-model="textField">
+            <a class="waves-effect waves-light btn" ng-click="filterText()">Calculate</a>
+        </div>
+        <br>
+        <div>Replace Ahmed filter: {{oneFilter}}</div>
+        <div>Replace Mohammad argument filter: {{oneFilter | argReplace : 'Mohammad' : 'Mohd'}}</div>
+        <div>Final Text: {{oneFilter | argReplace : 'Mohammad' : 'Mohd' | uppercase}}</div>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
