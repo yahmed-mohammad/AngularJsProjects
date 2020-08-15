@@ -15,7 +15,7 @@
         <h3>Shooping List Application</h3><br>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h5>Using ng-repeat in array</h5><br>
                     <input type="text" ng-model="newItemArray" class="input-group mb-3" placeholder="Item">
                     <button type="button" class="btn btn-info btn-block mb-3" ng-click="addToArray()">Add to Shopping List</button>
@@ -23,7 +23,7 @@
                         <li class="list-group-item" ng-repeat="item in arrayShoppingList">{{$index + 1}}. {{item}}</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h5>Using ng-repeat in object</h5><br>
                     <input type="text" ng-model="newItemObject" class="input-group mb-3" placeholder="Item">
                     <input type="text" ng-model="newItemQuantity" class="input-group mb-3" placeholder="Quantity">
@@ -32,6 +32,13 @@
                         <li class="list-group-item" ng-repeat="item in objectShoppingList">Buy {{item.quantity}} of {{item.name}}</li>
                     </ul>
                 </div>
+                <div class="col-md-4">
+                  <h5>Using filtered ng-repeat in array</h5><br>
+                  <input type="text" ng-model="search" class="input-group mb-3" placeholder="Search Item">
+                  <ul class="list-group">
+                      <li class="list-group-item" ng-repeat="item in arrayShoppingList | filter : search">{{$index + 1}}. {{item}}</li>
+                  </ul>
+              </div>
             </div>
         </div>
       </div>
