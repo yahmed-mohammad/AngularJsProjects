@@ -23,10 +23,21 @@
     function customFilterController($scope, textReplaceFilter) {
         $scope.textField = '';
         $scope.oneFilter= '';
-        $scope.argFilter = '';
         $scope.filterText = function() {
             let fil = textReplaceFilter($scope.textField);
             $scope.oneFilter = fil;
         }
+        /*
+        * Added a watchers in scope to check number of watchers initialized by Angular
+        */
+        $scope.watchers = 0;
+        $scope.showNumberOfWatchers = function() {
+        $scope.watchers = $scope.$$watchersCount;
+
+        /*
+        * Digest triggers everytime this is change in the watchers, plus one extra time to check if no more change is done
+        * So, for a simgle change, digest cycle runs for 2 times
+        */
+    }
     }
 })();

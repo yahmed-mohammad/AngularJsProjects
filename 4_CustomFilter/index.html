@@ -18,6 +18,10 @@
         <div>Replace Ahmed filter: {{oneFilter}}</div>
         <div>Replace Mohammad argument filter: {{oneFilter | argReplace : 'Mohammad' : 'Mohd'}}</div>
         <div>Final Text: {{oneFilter | argReplace : 'Mohammad' : 'Mohd' | uppercase}}</div>
+        <br>
+        <!--Added a button to check number of watchers initialized by Angular-->
+        <a class="waves-effect waves-light btn" ng-click="showNumberOfWatchers()">Show number of Watchers</a>
+        <div># of Watchers: {{watchers}}</div>
         
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
