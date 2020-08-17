@@ -27,6 +27,10 @@
         this.getList = function() {
             return items;
         }
+        /*
+        ** The below implementation is time consuming as after checkName is completed, then checkQuantiy is called
+        */
+        /*
         this.addToList = function(name, quantity) {
             var promise = LimitService.checkName(name);
 
@@ -44,6 +48,24 @@
                 console.log(errorResponse.message);
             })
         }
+        */
+       this.addToList = function(name, quantity) {
+           let namePromise = LimitService.checkName(name);
+           let quantityPromise = LimitService.checkQuantity(quantity);
+
+           $q.all([namePromise, quantityPromise])
+           .then(function(response) {
+            var item = {
+                name: name,
+                quantity: quantity
+            };
+            items.push(item);
+           })
+           .catch(function(error) {
+            console.log(error.message);
+           })
+       }
+
 
     }
 
@@ -58,13 +80,13 @@
             };
 
             $timeout(function() {
-                if(name.toLowerCase().indexOf('cookie') === -1 || name.toLowerCase().indexOf('cookies') === -1) {
+                if(name.toLowerCase().indexOf('cookie') === -1 && name.toLowerCase().indexOf('cookies') === -1) {
                     deffered.resolve(result);
                 } else {
                     result.message = "Cookies cannot be added to your shopping cart";
                     deffered.reject(result);
                 }
-            }, 2000);
+            }, 3000);
             return deffered.promise;
         }
         
