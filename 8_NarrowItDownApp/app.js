@@ -22,7 +22,10 @@
 
         narrowCtrl.searchMenu = function() {
             narrowCtrl.found = MenuSearchService.getMatchedMenuItems(narrowCtrl.item);
-        } 
+        }
+        narrowCtrl.remove = function(index) {
+            MenuSearchService.removeItem(index);
+        }
     }
 
     //Inject http service in our service function
@@ -31,14 +34,13 @@
     //Defining Service
     function MenuSearchService($http) {
         let narrowService = this;
+        let found = [];
 
         narrowService.getMatchedMenuItems = function(stringVal) {
             let responsePromise = $http({
                 method: "GET",
                 url: "https://davids-restaurant.herokuapp.com/menu_items.json"
             });
-
-            let found = [];
             
             responsePromise.then(function(response) {
                 let menuItems = response.data.menu_items;
@@ -52,6 +54,9 @@
                 console.log('Error');
             });
             return found;
+        }
+        narrowService.removeItem = function(index) {
+            found.splice(index, 1);
         }
     }
 })();
