@@ -14,25 +14,7 @@
                     <input class="one-half column" type="text" placeholder="enter the item to search" ng-model="narrowCtrl.item">
                     <button class="one-half column button-primary" ng-click="narrowCtrl.searchMenu()">Narrow It Down For Me!</button>
             </div>
-
-            <table class="u-full-width">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Short name</th>
-                    <th>Description</th>
-                    <th>Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="item in narrowCtrl.found">
-                    <td>{{item.name}}</td>
-                    <td>{{item.short_name}}</td>
-                    <td>{{item.description}}</td>
-                    <td><button class="button-primary">Don't want this one!</button></td>
-                  </tr>
-                </tbody>
-              </table>
+            <menu-list></menu-list>            
         </div>
     </div>
     

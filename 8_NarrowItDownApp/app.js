@@ -4,6 +4,14 @@
 
     module.controller('NarrowItDownController', NarrowItDownController);
     module.service('MenuSearchService', MenuSearchService);
+    module.directive('menuList', MenuListDirective);
+
+    function MenuListDirective() {
+        var ddo = {
+            templateUrl: "menu-list.html"
+        }
+        return ddo;
+    }
 
     //Inject service into Controller
     NarrowItDownController.$inject = ['MenuSearchService'];
