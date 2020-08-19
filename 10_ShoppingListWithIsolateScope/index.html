@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app='ShoppingListDirectiveApp'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Template Expanding Directive</title>
+  </head>
+  <body>
+    <h1>Template Expanding Directive</h1>
+
+    <!-- LIST #1 - unlimited items -->
+    <div id="list1" ng-controller='ShoppingListController1 as list'>
+      <h3>Shopping List #1</h3>
+      <input type="text" ng-model="list.itemName" placeholder="item name">
+      <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+      <button class="button-primary" ng-click="list.addItem();">Add Item</button>
+      <ol>
+        <li ng-repeat="item in list.items">
+          {{ item.quantity }} of {{ item.name }}
+          <button ng-click="list.removeItem($index);">Remove Item</button>
+        </li>
+      </ol>
+      <div ng-if="list.errorMessage" class="error">Error: {{list.errorMessage}}</div>
+    </div>
+
+    <!-- LIST #2 (limited to 3 items) -->
+    <div id="list2" ng-controller='ShoppingListController2 as list'>
+      <h3>Shopping List #2 (limited to 3 items)</h3>
+      <input type="text" ng-model="list.itemName" placeholder="item name">
+      <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+      <button class="button-primary" ng-click="list.addItem();">Add Item</button>
+      <ol>
+        <li ng-repeat="item in list.items">
+          {{ item.quantity }} of {{ item.name }}
+          <button ng-click="list.removeItem($index);">Remove Item</button>
+        </li>
+      </ol>
+      <div ng-if="list.errorMessage" class="error">Error: {{list.errorMessage}}</div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
