@@ -12,7 +12,8 @@
     var ddo = {
       templateUrl: 'shoppingList.html',
       scope: {
-        list: '=myList'
+        list: '=myList',
+        title: '@title'
       }
     };
   
