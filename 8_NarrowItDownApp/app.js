@@ -14,14 +14,38 @@
     }
 
     //Inject service into Controller
-    NarrowItDownController.$inject = ['MenuSearchService'];
+    NarrowItDownController.$inject = ['MenuSearchService', '$timeout'];
     //Defining Controller
-    function NarrowItDownController(MenuSearchService) {
+    function NarrowItDownController(MenuSearchService, $timeout) {
         let narrowCtrl = this;
         narrowCtrl.item = '';
 
         narrowCtrl.searchMenu = function() {
-            narrowCtrl.found = MenuSearchService.getMatchedMenuItems(narrowCtrl.item);
+            if(narrowCtrl.item === '') {
+                narrowCtrl.empty = true;
+                narrowCtrl.isFound = false;
+                narrowCtrl.nothingFound = false;
+            } else {
+                narrowCtrl.empty = false;
+                narrowCtrl.found = MenuSearchService.getMatchedMenuItems(narrowCtrl.item);
+
+                $timeout(function() {
+                    if(narrowCtrl.found.length != 0) {
+                        narrowCtrl.isFound = true;
+                        narrowCtrl.nothingFound = false;
+                    } else {
+                        narrowCtrl.isFound = false;
+                        narrowCtrl.nothingFound = true;
+                    }
+                }, 2000);
+            }
+            
+            // console.log(narrowCtrl.found.length);
+            // if(narrowCtrl.found.length != 0) {
+            //     narrowCtrl.notEmpty = true;
+            // } else {
+            //     narrowCtrl.notEmpty = false;
+            // }
         }
         narrowCtrl.remove = function(index) {
             MenuSearchService.removeItem(index);
