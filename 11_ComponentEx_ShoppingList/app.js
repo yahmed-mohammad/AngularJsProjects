@@ -14,8 +14,11 @@
             }
           });
     
+    //Inject $scope for manipulating the DOM & $element for getting the html element
+    ComponentController.$inject = ['$scope', '$element'];
+
     //Defining the Component Controller
-    function ComponentController() {
+    function ComponentController($scope, $element) {
 
         this.cookiesInList = function() {
             if(this.items !== undefined) {
@@ -30,6 +33,32 @@
         }
         this.remove = function(index) {
             this.onRemove({index: index});
+        }
+
+        //Component provided lifecycle methods
+
+        this.$onInit= function() {
+            console.log('This method executes once, when the controller initializes');
+        }
+
+        //ChangeObj is passed by angular for the watchers which is changed
+        this.$onChanges = function(changeObj) {
+            console.log("Changes",changeObj); // shows previous and current value
+        }
+
+        //Manipulate the DOM
+        let $ctrl = this;
+        this.$postLink = function() {
+            $scope.$watch('$ctrl.cookiesInList()', function(newValue, oldValue) {
+                console.log($element);
+                if(newValue === true) {
+                    let warningEle = $element.find('div.error');
+                    warningEle.slideDown(1000);
+                } else {
+                    let warningEle = $element.find('div.error');
+                    warningEle.slideUp(1000);
+                }
+            });
         }
     }
 
