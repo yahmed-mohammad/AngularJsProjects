@@ -1,0 +1,8 @@
+<h5>{{$ctrl.myTitle}}</h5>
+<ol>
+    <li ng-repeat="item in $ctrl.items">{{item.quantity}} units of {{item.name}} 
+        <button class="button-primary" ng-click="$ctrl.removeItem({index: $index})">Remove Item</button>
+    </li>
+    
+</ol>
+<div ng-if="$ctrl.cookiesInList()">WARNING!!! Cookies detected!</div>

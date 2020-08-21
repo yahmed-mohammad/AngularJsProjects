@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" />
+    <title>ShoppingList with Component</title>
+</head>
+<body ng-app="ShoppingList">
+    <div class="container" ng-controller="ShoppingListController as list">
+        <h3>ShoppingList App with Compenent</h3>
+        <div class="row">
+            <div class="three columns">
+                <input type="text" placeholder="Enter the item" ng-model="list.itemName">
+            </div>
+            <div class="three columns">
+                <input type="text" placeholder="Enter the Quantity" ng-model="list.itemQuantity">
+            </div>
+            <div class="three columns">
+                <button class="button-primary" ng-click="list.addItem()">Add to Shopping List</button>
+            </div>
+            
+        </div>
+        <div>
+            <h6>Last Removed Item: {{list.lastRemoved}}</h6>
+        </div>
+        <my-component
+            items="list.items"
+            title={{list.title}}
+            on-remove="list.removeItem(index)"
+        ></my-component>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
