@@ -27,7 +27,10 @@
                 }
             }
             return false;
-        };
+        }
+        this.remove = function(index) {
+            this.onRemove({index: index});
+        }
     }
 
     //Inject Service in Controller
