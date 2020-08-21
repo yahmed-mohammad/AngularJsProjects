@@ -7,7 +7,7 @@
           .component('myComponent', {
             templateUrl: 'shoppinList.html',
             controller: ComponentController, //as syntax is not used, then angular provides $ctrl for us
-            bindings: {
+            bindings: { // similar to scope of directive
                 items: '<', //one way binding
                 myTitle: '@title', // DOM attribute value binding
                 onRemove: '&' // callback to parent controller
