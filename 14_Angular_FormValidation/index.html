@@ -30,7 +30,7 @@
                     Must be a valid email address</span>
                 <br>
                 <input type="text" placeholder="###-###-####" ng-model="reg.user.phone"
-                    name="phone" pattern="(\d{3}-\d{3}-\d{4})">
+                    name="phone" pattern="(\d{3}-\d{3}-\d{4})" required>
                 <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
                     Phone must me in format ###-###-#####
                 </span>
@@ -38,7 +38,10 @@
                 <button class="button-primary" type="submit"
                     ng-disabled="regForm.$invalid"
                     ng-click="reg.submit()">
-                    Submit</button>
+                    Submit</button><br>
+                <div>
+                    Form valid: {{regForm.$valid}}
+                </div>
             </form>
         </fieldset>
         <div ng-if="reg.completed">
