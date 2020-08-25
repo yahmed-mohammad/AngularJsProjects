@@ -1,0 +1,16 @@
+<table class="u-full-width">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in $ctrl.categoryItems">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.short_name}}</td>
+      </tr>
+    </tbody>
+  </table>
