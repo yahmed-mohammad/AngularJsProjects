@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ==" crossorigin="anonymous" />
+    <title>Form Validation Using AngularJs</title>
+</head>
+<body ng-app="FormValidation">
+    <div class="container" ng-controller="RegistrationController as reg">
+        <h4> Simple Registration Form</h4>
+        <h6>Form Validation using AngularJs</h6>
+        <fieldset>
+            <legend>Registration</legend>
+            <form name="regForm">
+                <input type="text" placeholder="enter a username" ng-model="reg.user.username"
+                    name="username" required minlength="4" ng-maxlength="10"> 
+                {{reg.user.username}}
+                <span
+                    ng-if="(regForm.username.$error.minlength || regForm.username.$error.required)
+                    && regForm.username.$touched">Username must be 4 characters long</span>
+                <span
+                ng-if="regForm.username.$error.maxlength && regForm.username.$touched">
+                Username must not be longer than 10 characters</span>
+                <br>
+                <input type="email" placeholder="enter your email" ng-model="reg.user.email"
+                    name="email" required>
+                <span
+                    ng-if="regForm.email.$invalid && regForm.email.$touched">
+                    Must be a valid email address</span>
+                <br>
+                <input type="text" placeholder="###-###-####" ng-model="reg.user.phone"
+                    name="phone" pattern="(\d{3}-\d{3}-\d{4})">
+                <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+                    Phone must me in format ###-###-#####
+                </span>
+                <br>
+                <button class="button-primary" type="submit"
+                    ng-disabled="regForm.$invalid"
+                    ng-click="reg.submit()">
+                    Submit</button>
+            </form>
+        </fieldset>
+        <div ng-if="reg.completed">
+            Username: {{reg.user.username}}<br>
+            Email: {{reg.user.email}}<br>
+            Phone: {{reg.user.phone}}
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.0/angular.min.js" integrity="sha512-jiG+LwJB0bmXdn4byKzWH6whPpnLy1pnGA/p3VCXFLk4IJ/Ftfcb22katPTapt35Q6kwrlnRheK6UPOIdJhYTA==" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
